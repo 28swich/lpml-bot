@@ -1,0 +1,12 @@
+{
+  "name": "lpml-bot",
+  "version": "1.0.0",
+  "description": "Telegram Bot for LPML",
+  "main": "./index.js",
+  "keywords": [
+    "telegram",
+    "telegram bot",
+    "bot",
+    "lpml",
+    "lpml-bot"
+  ]}
