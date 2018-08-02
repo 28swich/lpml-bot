@@ -9,4 +9,7 @@
     "bot",
     "lpml",
     "lpml-bot"
-  ]}
+  ],
+  "scripts": {
+    "start": "node index.js"
+  }}
