@@ -1,6 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api');
-//const token = process.env.TOKEN;
-const token = "361841751:AAF4tLD32j2ModhUow67wU-Qc6W6sEat3ik";
+const token = process.env.TOKEN;
 const bot = new TelegramBot(token, {polling: true});
 
 bot.onText(/\/echo (.+)/, (msg, match) => {
@@ -30,6 +29,20 @@ bot.onText(/^\/help$/, (msg) => {
     
 });
 
+const request = require('request');
+function send(path, data){
+
+    var url = "http://lpml.kl.com.ua/" + path;
+    request.post(url, data, function (error, response, body) {
+        if (error) {
+	    console.log(error);
+	}else{
+	    //console.log(data);
+	}
+    });
+    
+}
+
 
 var states = {};
 
@@ -50,11 +63,13 @@ bot.onText(/(.+)/, (msg, match) => {
 
     if(states[chatId] == 1){
 	const uClass = match[1];
-	if (uClass.match(/\d{1,2}[абвгдАБВГД]/)){
-	    const resp = "Твій клас тепер: " + match[1];
+	var m = uClass.match(/^(\d{1,2})([абвгдАБВГД])$/); 
+	if (m){
+	    const c = m[1] + "-" + m[2].toUpperCase();
+	    const resp = "Твій клас тепер: " + c;
 	    bot.sendMessage(chatId, resp).then(() => {
 		states[chatId] = 0;
-		// set class to user !!!
+		send("setuser.php", {json: {chatid:chatId, uclass:c}})	
 	    });
 	}else{
 	    const resp = "Неправильний формат класу\nСпробуй знову\n(Має бути наприклад: '10в', буква українською)";
