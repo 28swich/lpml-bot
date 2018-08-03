@@ -24,7 +24,7 @@ bot.onText(/^\/start$/, (msg) => {
 bot.onText(/^\/help$/, (msg) => {
 
     const chatId = msg.chat.id;
-    const resp = "Список моїх команд:\n/class - вибери з якого ти класу\n/today(/td) - розклад уроків на сьогодні\n/tomorrow(/tm) - розклад уроків на завтра\n/timetable(/tt) - розклад на весь тиждень\n/time - розклад дзвінків\n/reminder(/rm) [on/off] - нагадування про події\nВсі команди що в дужках це скорочення";
+    const resp = "Список моїх команд:\n/class - вибери з якого ти класу\n/today(/td) - розклад уроків на сьогодні\n/tomorrow(/tm) - розклад уроків на завтра\n/timetable(/tt) - розклад на весь тиждень\n/time - розклад дзвінків\nВсі команди що в дужках це скорочення";
     bot.sendMessage(chatId, resp);
     
 });
