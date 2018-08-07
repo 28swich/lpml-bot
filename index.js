@@ -2,6 +2,8 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = process.env.TOKEN;
 const bot = new TelegramBot(token, {polling: true});
 
+const KEY = process.env.KEY;
+
 bot.onText(/\/echo (.+)/, (msg, match) => {
 
   const chatId = msg.chat.id;
@@ -11,7 +13,7 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
     
 });
 
-bot.onText(/^\/start$/, (msg) => {
+bot.onText(/^\/start$/i, (msg) => {
 
     const chatId = msg.chat.id;
     const first_name = msg.chat.first_name;
@@ -21,7 +23,7 @@ bot.onText(/^\/start$/, (msg) => {
     
 });
 
-bot.onText(/^\/help$/, (msg) => {
+bot.onText(/^\/help$/i, (msg) => {
 
     const chatId = msg.chat.id;
     const resp = "Список моїх команд:\n/class - вибери з якого ти класу\n/today(/td) - розклад уроків на сьогодні\n/tomorrow(/tm) - розклад уроків на завтра\n/timetable(/tt) - розклад на весь тиждень\n/time - розклад дзвінків\nВсі команди що в дужках це скорочення";
@@ -46,10 +48,10 @@ function send(path, data){
 
 var states = {};
 
-bot.onText(/^\/class$/, (msg) => {
+bot.onText(/^\/class$/i, (msg) => {
 
     const chatId = msg.chat.id;
-    const resp = "Напиши з якого ти класу(наприклад: '10в')";
+    const resp = "Напиши з якого ти класу\n(наприклад: '10в')";
     
     bot.sendMessage(chatId, resp).then(() => {
 	states[chatId] = 1;
@@ -69,7 +71,7 @@ bot.onText(/(.+)/, (msg, match) => {
 	    const resp = "Твій клас тепер: " + c;
 	    bot.sendMessage(chatId, resp).then(() => {
 		states[chatId] = 0;
-		send("setuser.php", {json: {chatid:chatId, uclass:c}})	
+		send("setuser.php", {json: {chatid:chatId, uclass:c, key:KEY}})	
 	    });
 	}else{
 	    const resp = "Неправильний формат класу\nСпробуй знову\n(Має бути наприклад: '10в', буква українською)";
