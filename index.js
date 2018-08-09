@@ -1,3 +1,4 @@
+const request = require('request');
 const TelegramBot = require('node-telegram-bot-api');
 const token = process.env.TOKEN;
 const bot = new TelegramBot(token, {polling: true});
@@ -12,6 +13,47 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
   bot.sendMessage(chatId, resp);
     
 });
+
+bot.onText(/\/list/, (msg) => {
+
+    const chatId = msg.chat.id;
+    var resp = "";
+    var data = getData("getusers.php");
+    for(key in data){
+	resp += key + " : " + data.key + "\n";
+    }
+    bot.sendMessage(chatId, resp);
+    
+    
+});
+
+function getData(path){
+
+    var url = "lpml.kl.com.ua" + path;
+    request.post(url, {json: {key:KEY}}, function (error, response, body){
+	if(error){
+	    console.log(error);
+	}else{
+	    return JSON.parse(body);
+	}
+	    
+    });
+    
+}
+
+function sendData(path, data){
+
+    var url = "http://lpml.kl.com.ua/" + path;
+    request.post(url, data, function (error, response, body){
+        if (error){
+	    console.log(error);
+	}else{
+	    //console.log(data);
+	}
+    });
+    
+}
+
 
 bot.onText(/^\/start$/i, (msg) => {
 
@@ -31,22 +73,6 @@ bot.onText(/^\/help$/i, (msg) => {
     
 });
 
-const request = require('request');
-function send(path, data){
-
-    var url = "http://lpml.kl.com.ua/" + path;
-    request.post(url, data, function (error, response, body) {
-        if (error) {
-	    console.log(error);
-	}else{
-	    //console.log(data);
-	}
-    });
-    
-}
-
-
-var states = {};
 
 bot.onText(/^\/class$/i, (msg) => {
 
@@ -59,6 +85,8 @@ bot.onText(/^\/class$/i, (msg) => {
     
 });
 
+
+var states = {};
 bot.onText(/(.+)/, (msg, match) => {
 
     const chatId = msg.chat.id;
@@ -71,7 +99,7 @@ bot.onText(/(.+)/, (msg, match) => {
 	    const resp = "Твій клас тепер: " + c;
 	    bot.sendMessage(chatId, resp).then(() => {
 		states[chatId] = 0;
-		send("setuser.php", {json: {chatid:chatId, uclass:c, key:KEY}})	
+		sendData("setuser.php", {json: {chatid:chatId, uclass:c, key:KEY}})	
 	    });
 	}else{
 	    const resp = "Неправильний формат класу\nСпробуй знову\n(Має бути наприклад: '10в', буква українською)";
