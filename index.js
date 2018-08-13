@@ -1,11 +1,10 @@
 const request = require('request');
 const TelegramBot = require('node-telegram-bot-api');
 const token = process.env.TOKEN;
+const KEY = process.env.KEY;
 const bot = new TelegramBot(token, {
     polling: true
 });
-
-const KEY = process.env.KEY;
 
 bot.onText(/\/echo (.+)/, (msg, match) => {
 
