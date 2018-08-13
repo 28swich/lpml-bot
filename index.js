@@ -17,20 +17,6 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 });
 
 
-function sendData(path, data) {
-
-    var url = "http://lpml.kl.com.ua/" + path;
-    request.post(url, data, function(error, response, body) {
-        if (error) {
-            console.log(error);
-        } else {
-            //console.log(data);
-        }
-    });
-
-}
-
-
 bot.onText(/^\/start$/i, (msg) => {
 
     const chatId = msg.chat.id;
@@ -119,13 +105,15 @@ bot.onText(/(.+)/, (msg, match) => {
                     const resp = "Твій клас тепер: " + c;
                     bot.sendMessage(chatId, resp).then(() => {
                         states[chatId] = 0;
-                        sendData("setuser.php", {
-                            json: {
-                                chatid: chatId,
-                                uclass: c,
-                                key: KEY
-                            }
-                        })
+			const url2 = "http://lpml.kl.com.ua/setuser.php";
+			request.post(url2, {
+			    json: {
+				chatid: chatId,
+				uclass: c,
+				key: KEY
+			    }
+			}, function(error2, response2, body2){});
+                        
                     });
                 } else {
                     const resp = "Вибач, але поки мені нічого не відомо про твій клас.\nПовідом про це старості свого класу та дай йому мої контакти: @swich28";
