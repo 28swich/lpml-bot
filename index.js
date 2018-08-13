@@ -72,6 +72,22 @@ bot.onText(/^\/class$/i, (msg) => {
 });
 
 
+bot.onText(/^\/time$/i, msg => {
+
+    const chatId = msg.chat.id;
+    const resp = "```    Пн.-Пт.	    Субота
+1 08:45-09:30  08:45-09:30
+2 09:40-10:25  09:40-10:25
+3 10:35-11:20  10:35-11:20
+4 11:40-12:25  11:30-12:15
+5 12:50-13:35  12:25-13:10
+6 14:00-14:45  13:20-14:05
+7 14:55-15:40  14:15-15:00```";
+    bot.sendMessage(chatId, resp, {parse_mode: "Markdown"});
+
+});
+
+
 var states = {};
 
 bot.onText(/^\/cancel$/i, msg => {
