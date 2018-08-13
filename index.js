@@ -30,7 +30,7 @@ bot.onText(/^\/start$/i, (msg) => {
 bot.onText(/^\/help$/i, (msg) => {
 
     const chatId = msg.chat.id;
-    const resp = "Список моїх команд:\n/class - вибери з якого ти класу\n/today(/td) - розклад уроків на сьогодні\n/tomorrow(/tm) - розклад уроків на завтра\n/timetable(/tt) - розклад на весь тиждень\n/time - розклад дзвінків\nВсі команди що в дужках це скорочення";
+    const resp = "Список моїх команд:\n/class - вибери з якого ти класу\n/today(/td) - розклад уроків на сьогодні\n/tomorrow(/tm) - розклад уроків на завтра\n/timetable(/tt) - розклад на весь тиждень\n/bell - розклад дзвінків";
     bot.sendMessage(chatId, resp);
 
 });
@@ -72,7 +72,7 @@ bot.onText(/^\/class$/i, (msg) => {
 });
 
 
-bot.onText(/^\/time$/i, msg => {
+bot.onText(/^\/bell$/i, msg => {
 
     const chatId = msg.chat.id;
     const resp = "```    Пн.-Пт.	     Субота\n1 08:45-09:30  08:45-09:30\n2 09:40-10:25  09:40-10:25\n3 10:35-11:20  10:35-11:20\n4 11:40-12:25  11:30-12:15\n5 12:50-13:35  12:25-13:10\n6 14:00-14:45  13:20-14:05\n7 14:55-15:40  14:15-15:00```";
