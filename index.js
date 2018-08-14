@@ -230,7 +230,7 @@ bot.onText(/^\/(?:timetable)|(?:tt)$/i, msg => {
 
 	if(found){
 
-	    bot.sendMessage(chatId, "OK-3");
+	    bot.sendMessage(chatId, "OK-3") ;
 	    
 	}else{
 
