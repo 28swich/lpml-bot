@@ -146,7 +146,7 @@ bot.onText(/^\/(?:today)|(?:td)$/i, msg => {
     const chatId = msg.chat.id;
     const url = "http://lpml.com.ua/getusers.php";
     request.post(url, {
-	json:{
+	json:{ 
 	    key:KEY
 	}
     }, function(error, response, body){
