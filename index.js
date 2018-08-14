@@ -153,7 +153,7 @@ bot.onText(/^\/(?:today)|(?:td)$/i, msg => {
 
 	var found = false;
 	for(id in body){
-	    if(id == chatId.toString()){
+	    if(id.toString() == chatId.toString()){
 		found = true;
 		break;
 	    }
@@ -187,7 +187,7 @@ bot.onText(/^\/(?:tomorrow)|(?:tm)$/i, msg => {
     }, function(error, response, body){
 
 	var found = false;
-	for(id in body){
+	for(id.toString() in body){
 	    if(id == chatId.toString()){
 		found = true;
 		break;
@@ -222,7 +222,7 @@ bot.onText(/^\/(?:timetable)|(?:tt)$/i, msg => {
 
 	var found = false;
 	for(id in body){
-	    if(id == chatId.toString()){
+	    if(id.toString() == chatId.toString()){
 		found = true;
 		break;
 	    }
