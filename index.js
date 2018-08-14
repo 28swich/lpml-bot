@@ -139,3 +139,106 @@ bot.onText(/(.+)/, (msg, match) => {
     }
 
 });
+
+
+bot.onText(/^\/(?:today)|(?:td)$/i, msg => {
+
+    const chatId = msg.chat.id;
+    const url = "http://lpml.com.ua/getusers.php";
+    request.post(uer, {
+	json:{
+	    key:KEY
+	}
+    }, function(error, response, body){
+
+	var found = false;
+	for(id in body){
+	    if(id == chatId.toString()){
+		found = true;
+		break;
+	    }
+	}
+
+	if(found){
+
+	    bot.sendMessage(chatId, "OK-1");
+	    
+	}else{
+
+	    const resp = "Вибери з якого ти класу /class";
+	    bot.sendMessage(chatId, resp);
+	    
+	}
+	
+    });
+    
+});
+
+
+
+bot.onText(/^\/(?:tomorrow)|(?:tm)$/i, msg => {
+
+    const chatId = msg.chat.id;
+    const url = "http://lpml.com.ua/getusers.php";
+    request.post(uer, {
+	json:{
+	    key:KEY
+	}
+    }, function(error, response, body){
+
+	var found = false;
+	for(id in body){
+	    if(id == chatId.toString()){
+		found = true;
+		break;
+	    }
+	}
+
+	if(found){
+
+	    bot.sendMessage(chatId, "OK-2");
+	    
+	}else{
+
+	    const resp = "Вибери з якого ти класу /class";
+	    bot.sendMessage(chatId, resp);
+	    
+	}
+	
+    });
+    
+});
+
+
+bot.onText(/^\/(?:timetable)|(?:tt)$/i, msg => {
+
+    const chatId = msg.chat.id;
+    const url = "http://lpml.com.ua/getusers.php";
+    request.post(uer, {
+	json:{
+	    key:KEY
+	}
+    }, function(error, response, body){
+
+	var found = false;
+	for(id in body){
+	    if(id == chatId.toString()){
+		found = true;
+		break;
+	    }
+	}
+
+	if(found){
+
+	    bot.sendMessage(chatId, "OK-3");
+	    
+	}else{
+
+	    const resp = "Вибери з якого ти класу /class";
+	    bot.sendMessage(chatId, resp);
+	    
+	}
+	
+    });
+    
+});
