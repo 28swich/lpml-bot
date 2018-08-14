@@ -187,8 +187,8 @@ bot.onText(/^\/(?:tomorrow)|(?:tm)$/i, msg => {
     }, function(error, response, body){
 
 	var found = false;
-	for(id.toString() in body){
-	    if(id == chatId.toString()){
+	for(id in body){
+	    if(id.toString() == chatId.toString()){
 		found = true;
 		break;
 	    }
