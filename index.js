@@ -145,7 +145,7 @@ bot.onText(/^\/(?:today)|(?:td)$/i, msg => {
 
     const chatId = msg.chat.id;
     const url = "http://lpml.com.ua/getusers.php";
-    request.post(uer, {
+    request.post(url, {
 	json:{
 	    key:KEY
 	}
@@ -180,7 +180,7 @@ bot.onText(/^\/(?:tomorrow)|(?:tm)$/i, msg => {
 
     const chatId = msg.chat.id;
     const url = "http://lpml.com.ua/getusers.php";
-    request.post(uer, {
+    request.post(url, {
 	json:{
 	    key:KEY
 	}
@@ -214,7 +214,7 @@ bot.onText(/^\/(?:timetable)|(?:tt)$/i, msg => {
 
     const chatId = msg.chat.id;
     const url = "http://lpml.com.ua/getusers.php";
-    request.post(uer, {
+    request.post(url, {
 	json:{
 	    key:KEY
 	}
@@ -230,7 +230,7 @@ bot.onText(/^\/(?:timetable)|(?:tt)$/i, msg => {
 
 	if(found){
 
-	    bot.sendMessage(chatId, "OK-3") ;
+	    bot.sendMessage(chatId, "OK-3");
 	    
 	}else{
 
