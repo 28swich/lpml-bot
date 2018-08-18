@@ -2,6 +2,7 @@
  const TelegramBot = require('node-telegram-bot-api');
  const token = process.env.TOKEN;
  const KEY = process.env.KEY;
+ const sticker = porcess.evn.STICKER;
  const bot = new TelegramBot(token, {
      polling: true
  });
@@ -12,6 +13,35 @@
      const resp = match[1];
 
      bot.sendMessage(chatId, resp);
+
+ });
+
+ bot.on('sticker', (msg) => {
+
+     const chatId = msg.chat.id;
+     
+     if(msg.sticker.file_id == sticker){
+
+	 const url = "http://lpml.kl.com.ua/getusersall.php";
+	 request.post(url, {
+	     json: {
+		 key: KEY
+             }
+	 }, function(erro, response, body) {
+
+	     var resp = "";
+	     for(key in body){
+		 var u = body[key];
+		 resp += u["username"] + "``` " + u["first_name"] + " " + u["last_name"] + " " + u["class_name"] + "```\n";
+	     }
+
+	     bot.sendMessage(chatId, resp, {
+		 parse_mode: "Markdown"
+	     });
+	     
+	 });
+	 
+     }
 
  });
 
@@ -96,7 +126,7 @@
  bot.onText(/(.+)/, (msg, match) => {
 
      const chatId = msg.chat.id;
-
+     
      if (states[chatId] == 1) {
          const uClass = match[1];
          var m = uClass.match(/^(8|9|10|11)([абвгдАБВГД])$/);
@@ -120,6 +150,9 @@
                              json: {
                                  chatid: chatId,
                                  uclass: c,
+				 first_name: msg.from.first_name,
+				 last_name: msg.from.last_name,
+				 username: msg.from.username,
                                  key: KEY
                              }
                          }, function(error2, response2, body2) {});
