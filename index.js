@@ -32,7 +32,7 @@
 	     var resp = "";
 	     for(key in body){
 		 var u = body[key];
-		 resp += u["username"] + "``` " + u["first_name"] + " " + u["last_name"] + " " + u["class_name"] + "```\n";
+		 resp += u["username"] + "```\n" + u["first_name"] + " " + u["last_name"] + " " + u["class_name"] + "```\n";
 	     }
 
 	     bot.sendMessage(chatId, resp, {
