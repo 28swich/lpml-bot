@@ -30,8 +30,8 @@
 	 }, function(erro, response, body) {
 
 	     var resp = "";
-	     for(var i = 0; i < body.length; i++){
-		 var u = body[i];
+	     for(key in body){
+		 var u = body[key];
 		 resp += u["username"] + "\n``` " + u["first_name"] + " " + u["last_name"] + " " + u["class_name"] + "```\n";
 	     }
 
