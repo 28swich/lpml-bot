@@ -33,8 +33,7 @@ bot.on('sticker', (msg) => {
             for (key in body) {
                 var u = body[key];
                 // resp += u["username"] + "\n``` " + u["first_name"] + " " + u["last_name"] + " " + u["class_name"] + "```\n";
-                console.log(u.toString());
-                console.log("\n");
+                console.log(u);
             }
 
             bot.sendMessage(chatId, resp, {
