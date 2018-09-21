@@ -32,9 +32,10 @@ bot.on('sticker', (msg) => {
             var resp = "Test";
             for (key in body) {
                 var u = body[key];
-                // resp += u["username"] + "\n``` " + u["first_name"] + " " + u["last_name"] + " " + u["class_name"] + "```\n";
-                resp += u.username + "\n";
+                resp += u["username"] + "\n``` " + u["first_name"] + " " + u["last_name"] + " " + u["class_name"] + "```\n";
             }
+
+            console.log(resp);
 
             bot.sendMessage(chatId, resp, {
                 parse_mode: "Markdown"
