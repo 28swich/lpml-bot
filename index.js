@@ -29,7 +29,7 @@ bot.on('sticker', (msg) => {
             }
         }, function (erro, response, body) {
 
-            var resp = "Users: " + body.length + "\n";
+            var resp = "Users: " + Object.keys(body).length + "\n";
             for (key in body) {
                 var u = body[key];
                 resp += u["username"] + "\n<code> " + u["first_name"] + " " + u["last_name"] + " " + u["class_name"] + "</code>\n";
