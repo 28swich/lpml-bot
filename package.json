@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js"
   },
-  "author": "swich",
+  "author": "mymmrac",
   "license": "ISC",
   "dependencies": {
     "jQuery": "^1.7.4",
